@@ -1,0 +1,90 @@
+/* Module.css - Shared styles for data modules */
+
+.data-module {
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+  background-color: #fff; /* Default white background */
+  border: 1px solid #e9ecef; /* Light border */
+  margin-bottom: 15px; /* Space between modules if stacked differently */
+}
+
+.data-module h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.3em; /* Slightly larger for module titles */
+  color: #343a40; /* Darker grey for titles */
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+.data-module p {
+  font-size: 0.95em;
+  color: #495057; /* Standard text color */
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.data-module ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.data-module li {
+  padding: 8px 0;
+  border-bottom: 1px dotted #e0e0e0; /* Dotted separator for list items */
+  font-size: 0.9em;
+}
+
+.data-module li:last-child {
+  border-bottom: none;
+}
+
+.data-module .meta-info {
+  font-size: 0.8em;
+  color: #6c757d; /* Grey for meta text */
+  display: block; /* Each meta info on new line or use inline-block with margin */
+  margin-top: 3px;
+}
+
+.data-module .content-preview {
+  font-style: italic;
+  color: #5a6268;
+  white-space: pre-wrap; /* Preserve whitespace and wrap */
+  max-height: 100px; /* Limit preview height */
+  overflow-y: auto; /* Scroll for longer previews */
+  background-color: #f8f9fa; /* Light background for preview box */
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* Specific module styling can override these or be added here */
+/* Example: if modules have different accent colors based on their type */
+
+.limitless-module-styles { /* Renamed to avoid conflict with DailyNewspaper.css if used directly */
+  /* border-left: 4px solid #28a745; */ /* Green accent */
+}
+
+.bee-module-styles {
+  /* border-left: 4px solid #ffc107; */ /* Yellow accent */
+}
+
+.weather-module-styles {
+  /* border-left: 4px solid #17a2b8; */ /* Teal accent */
+}
+
+.mood-module-styles {
+  /* border-left: 4px solid #6f42c1; */ /* Purple accent */
+}
+
+/* Small square module style (conceptual, as height is content-driven) */
+.small-square-module {
+  /* Could set a fixed aspect ratio or max-height if desired, but often tricky with dynamic content */
+  /* For MVP, "small square" is more about the type/density of info than a strict shape */
+}
+
+/* Vertical rectangle module style (conceptual) */
+.vertical-rectangle-module {
+  /* Typically means it can take more vertical space if content is long */
+}

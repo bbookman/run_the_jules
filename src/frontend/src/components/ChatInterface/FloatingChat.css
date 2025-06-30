@@ -1,0 +1,160 @@
+/* FloatingChat.css */
+.floating-chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  max-height: 500px; /* Max height before chat content scrolls */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Important for border-radius on children */
+  z-index: 1000; /* Ensure it's above other content */
+  transition: all 0.3s ease-in-out;
+}
+
+.floating-chat-widget.closed {
+  width: 60px; /* Size of the toggle button when closed */
+  height: 60px;
+  overflow: visible; /* Allow toggle button to be fully visible if larger */
+}
+
+
+.chat-toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%; /* Circular button */
+  width: 60px;
+  height: 60px;
+  font-size: 24px; /* Icon size */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background-color 0.2s;
+  position: absolute; /* For positioning when closed */
+  bottom: 0; /* Aligns with widget bottom when closed */
+  right: 0; /* Aligns with widget right when closed */
+}
+
+.floating-chat-widget.closed .chat-toggle-button {
+    /* No specific changes needed here if it's always visible and widget shrinks */
+}
+
+
+.chat-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header .close-chat-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+
+.message-history {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto; /* Enable scrolling for messages */
+  background-color: #f4f7f6; /* Light background for message area */
+  min-height: 200px; /* Ensure it has some height even when few messages */
+}
+
+.message-history .message {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 15px; /* Rounded message bubbles */
+  max-width: 80%; /* Messages don't take full width */
+  word-wrap: break-word; /* Break long words */
+  line-height: 1.4;
+}
+
+.message-history .message.user {
+  background-color: #007bff; /* Blue for user messages */
+  color: white;
+  margin-left: auto; /* Align to the right */
+  border-bottom-right-radius: 5px; /* Flat edge for user */
+}
+
+.message-history .message.ai {
+  background-color: #e9ecef; /* Light grey for AI messages */
+  color: #333;
+  margin-right: auto; /* Align to the left */
+  border-bottom-left-radius: 5px; /* Flat edge for AI */
+}
+
+.message-history .message .timestamp {
+  font-size: 0.7em;
+  color: #a0a0a0; /* Lighter color for timestamp */
+  display: block;
+  margin-top: 4px;
+  text-align: right; /* Timestamp on the right */
+}
+.message-history .message.ai .timestamp {
+  color: #777;
+  text-align: left;
+}
+
+
+.chat-input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.chat-input-area input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Rounded input field */
+  margin-right: 8px;
+  font-size: 0.95em;
+}
+
+.chat-input-area input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.chat-input-area button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px; /* Rounded send button */
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background-color 0.2s;
+}
+
+.chat-input-area button:hover {
+  background-color: #0056b3;
+}
+
+.chat-input-area button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
