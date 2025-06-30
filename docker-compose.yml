@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  lifeboard-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development # Set to production for actual deployment
+      # Pass environment variables from .env file
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - LIMITLESS_API_KEY=${LIMITLESS_API_KEY}
+      - BEE_API_KEY=${BEE_API_KEY}
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+      - MEM0_API_KEY=${MEM0_API_KEY}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@database:5432/lifeboard
+    env_file:
+      - .env # Loads variables from .env file at the root
+    volumes:
+      - ./src/backend:/app/src # Mount backend source for development
+      # - ./utils:/app/utils # If you have a shared utils folder
+      - ./lifeboard.config.yml:/app/lifeboard.config.yml:ro # Mount config file read-only
+      - ./logs:/app/logs # Mount logs directory
+    depends_on:
+      - database
+    restart: unless-stopped
+
+  lifeboard-frontend:
+    build:
+      context: ./src/frontend # Path to frontend Dockerfile and context
+      dockerfile: Dockerfile # Assuming you'll create a Dockerfile in src/frontend
+    ports:
+      - "3001:3000" # React dev server usually runs on 3000, mapping to 3001 on host
+    volumes:
+      - ./src/frontend:/app # Mount frontend source for development
+      - /app/node_modules # Don't mount host node_modules over container's
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - lifeboard-backend
+    restart: unless-stopped
+
+  database:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: lifeboard
+      POSTGRES_USER: ${DB_USERNAME} # Use variable from .env
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # Use variable from .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Script to initialize DB
+    ports:
+      - "5432:5432" # Expose PostgreSQL port to host
+    restart: unless-stopped
+
+volumes:
+  postgres_data: # Persists database data across container restarts

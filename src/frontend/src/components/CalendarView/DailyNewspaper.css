@@ -1,0 +1,154 @@
+/* DailyNewspaper.css */
+.daily-newspaper-container {
+  width: 95%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.daily-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.daily-header h1 {
+  font-size: 2em;
+  color: #333;
+  margin: 0;
+}
+
+.daily-header a {
+  font-size: 0.9em;
+  padding: 8px 15px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.daily-header a:hover {
+  background-color: #5a6268;
+}
+
+.ai-summary-module {
+  background-color: #e9f5ff; /* Light blue background for AI summary */
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+  border: 1px solid #bce0fd;
+}
+
+.ai-summary-module h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  color: #0056b3;
+}
+
+.ai-summary-module p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0;
+}
+
+/* Modules Grid Layout */
+.modules-grid {
+  display: flex;
+  gap: 20px; /* Space between columns */
+}
+
+.module-column {
+  flex: 1; /* Each column takes equal width */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between modules in a column */
+}
+
+.module {
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: #f8f9fa; /* Default module background */
+  border: 1px solid #e0e0e0;
+}
+
+.module h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #495057;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.module p {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Specific module styling if needed */
+/* PRD: Limitless (vertical rectangle), Bee (vertical rectangle), Mood (small square), Weather (small square) */
+/* These are conceptual shapes; actual content will determine height. */
+/* We can enforce min-heights or aspect ratios if strictly needed, but typically content drives size. */
+
+.limitless-module {
+  /* Example: Make it visually distinct or give it more height if content is rich */
+  /* min-height: 300px; */
+  background-color: #f0fff0; /* Light green tint */
+  border-left: 4px solid #28a745;
+}
+
+.bee-module {
+  /* min-height: 300px; */
+  background-color: #fff8e1; /* Light yellow tint */
+  border-left: 4px solid #ffc107;
+}
+
+.mood-module {
+  /* min-height: 150px; */ /* Example for "small square" feel */
+  /* max-height: 200px; */
+  background-color: #f3e5f5; /* Light purple tint */
+  border-left: 4px solid #9c27b0;
+}
+
+.weather-module {
+  /* min-height: 150px; */
+  /* max-height: 200px; */
+  background-color: #e3f2fd; /* Light blue tint */
+  border-left: 4px solid #2196f3;
+}
+
+
+/* Raw data for debugging */
+.raw-data-debug {
+  margin-top: 30px;
+  background-color: #282c34; /* Dark background */
+  color: #f0f0f0;
+  padding: 15px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8em;
+  white-space: pre-wrap; /* Wrap long lines */
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Responsive adjustments for daily view */
+@media (max-width: 768px) {
+  .modules-grid {
+    flex-direction: column; /* Stack columns on smaller screens */
+  }
+  .daily-header h1 {
+    font-size: 1.6em;
+  }
+}

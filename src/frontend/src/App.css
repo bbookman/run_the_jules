@@ -1,0 +1,55 @@
+/* Basic App styling */
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Remove default App-header styling if not used, or adapt it */
+/* .App-header { ... } */
+
+.main-nav {
+  background-color: #333; /* Dark background for nav */
+  padding: 0.5em 1em;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.main-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* background-color: #f0f0f0; */ /* Removed, nav has dark bg */
+  overflow: hidden;
+  display: flex; /* Align items horizontally */
+  justify-content: flex-start; /* Align to the left */
+}
+
+.main-nav li {
+  /* float: left; */ /* Replaced by flexbox */
+}
+
+.main-nav li a {
+  display: block;
+  /* color: #333; */ /* Change for dark background */
+  color: #f0f0f0; /* Light color for text on dark nav */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.main-nav li a:hover {
+  background-color: #555; /* Darker shade on hover */
+  color: #fff;
+}
+
+.content-area {
+  flex-grow: 1; /* Takes up remaining vertical space */
+  padding: 20px;
+  background-color: #f4f7f6; /* Match body background or set a content area bg */
+}
+
+/* Add more global styles as needed */

@@ -1,0 +1,75 @@
+# Lifeboard Configuration Template
+# Copy this file to lifeboard.config.yml and fill in your details.
+# Alternatively, set environment variables for sensitive data.
+
+database:
+  type: "postgresql"
+  host: "database" # Service name in docker-compose
+  port: 5432
+  database: "lifeboard"
+  username: "${DB_USERNAME}" # Resolved from .env
+  password: "${DB_PASSWORD}" # Resolved from .env
+  ssl: false # Or true if your DB requires SSL
+
+dataSources:
+  limitless:
+    enabled: true
+    apiKey: "${LIMITLESS_API_KEY}" # Resolved from .env
+    baseUrl: "https://api.limitless.ai" # Default, verify if correct
+    syncInterval: "1h" # e.g., 30m, 1h, 6h
+    timezone: "America/New_York" # Your local timezone
+
+  bee:
+    enabled: true
+    apiKey: "${BEE_API_KEY}" # Resolved from .env
+    baseUrl: "https://api.bee.computer/v1/me" # Default, verify if correct
+    syncInterval: "30m"
+    subSources:
+      conversations: true
+      facts: true
+      todos: true
+      locations: false # Disabled for MVP as per PRD focus
+
+  weather:
+    enabled: true
+    provider: "openweathermap" # Or other provider
+    apiKey: "${WEATHER_API_KEY}" # Resolved from .env
+    location: "New York, NY" # Your city and state/country
+    syncInterval: "6h"
+
+  mood:
+    enabled: true
+    # For MVP, mood is manually inputted.
+    # No API key needed. Frontend will post to a backend endpoint.
+    reminderTime: "21:00" # Optional: for future notification features
+
+ai:
+  provider: "mem0" # Or "langchain", "custom"
+  config:
+    apiKey: "${MEM0_API_KEY}" # Resolved from .env, if mem0 is used and requires it
+    model: "gpt-4" # Or other model compatible with your provider
+
+  prompts:
+    dailySummary: |
+      Generate a warm, reflective summary of this day's activities.
+      Focus on meaningful moments and connections.
+      Tone: Conversational and insightful.
+      Data available: {bee_conversations_count} Bee conversations, mood score {mood_score}/10, weather was {weather_condition}.
+      Example: Today you had {bee_conversations_count} conversations using Bee. Your mood was a {mood_score}/10 and the weather was {weather_condition}.
+
+server:
+  port: 3000 # Port the backend server runs on inside the container
+  cors:
+    origin: ["http://localhost:3001"] # Frontend URL for CORS
+
+logging:
+  level: "info" # e.g., "debug", "info", "warn", "error"
+  file: "./logs/lifeboard.log" # Path relative to app root in container
+  console: true # Whether to log to console as well
+
+# MVP specific settings
+mvp_settings:
+  ai_chat_mode: "echo" # "echo" (repeats input), "basic_keyword" (simple keyword matching), or "ai_powered" (full AI)
+  # For MVP, we'll start with "echo" or a very basic mode for the chat.
+  daily_summary_mode: "template" # "template" (uses prompt above), "ai_generated" (full AI)
+  # For MVP, template based summary is fine.

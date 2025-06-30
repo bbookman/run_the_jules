@@ -1,0 +1,146 @@
+/* MonthlyCalendar.css */
+.monthly-calendar-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.calendar-header button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.calendar-header button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px; /* Small gap between cells */
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+}
+
+.calendar-weekday {
+  padding: 10px 5px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.calendar-day {
+  position: relative; /* For positioning indicators */
+  min-height: 100px; /* Adjust as needed */
+  padding: 8px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes day number up, indicators down */
+}
+
+.calendar-day:hover {
+  background-color: #f0f8ff; /* Light blue on hover */
+}
+
+.calendar-day.empty {
+  background-color: #f9f9f9; /* Slightly different background for empty cells */
+  pointer-events: none; /* Not clickable */
+}
+
+.calendar-day .day-number {
+  font-size: 0.9em;
+  font-weight: bold;
+  align-self: flex-start; /* Number at the top-left */
+}
+
+.calendar-day.today .day-number {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 7px;
+  display: inline-block; /* To make background color fit content */
+}
+
+.calendar-day.has-data {
+  /* background-color: #e6f7ff; Lightly highlight days with data */
+}
+
+/* Data Indicators */
+.data-indicators {
+  display: flex;
+  justify-content: center; /* Center indicators horizontally */
+  align-items: flex-end; /* Align to bottom */
+  padding-top: 5px; /* Space above indicators */
+  flex-wrap: wrap; /* Wrap if too many indicators */
+  min-height: 20px; /* Ensure space for indicators */
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 2px; /* Space between indicators */
+  display: inline-block;
+}
+
+/* Specific colors for data types, as per PRD or design */
+.limitless-indicator { background-color: #4CAF50; } /* Green */
+.bee-indicator { background-color: #FFC107; }    /* Amber */
+.weather-indicator { background-color: #2196F3; } /* Blue */
+.mood-indicator { background-color: #9C27B0; }   /* Purple */
+
+/* Add classes for data-limitless, data-bee etc. if specific background styling per day is needed */
+/* .calendar-day.data-limitless { border-left: 3px solid #4CAF50; }
+.calendar-day.data-bee { border-left: 3px solid #FFC107; } */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .calendar-day {
+    min-height: 80px;
+    padding: 5px;
+  }
+  .calendar-header h2 {
+    font-size: 1.4em;
+  }
+  .calendar-header button {
+    padding: 8px 10px;
+    font-size: 0.9em;
+  }
+  .indicator {
+    width: 6px;
+    height: 6px;
+  }
+}
